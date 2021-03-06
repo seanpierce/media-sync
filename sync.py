@@ -20,7 +20,7 @@ print('=== Syncing files from disk to remote drive ===')
 try:
     os.system("sshpass -p %s rsync -a --ignore-existing --progress %s %s" %(config['local'], config['remote'], password))
 except BaseException as ex:
-    print("Unable to sync files form disk to remote drive. Error: %s" %(ex))
+    print("Unable to sync files from disk to remote drive. Error: %s" %(ex))
     sys.exit() 
 
 # sync files from remote to disk
@@ -29,7 +29,7 @@ print('=== Syncing files from remote drive to disk ===')
 try:
     os.system("sshpass -p %s rsync -a --ignore-existing --progress %s %s" %(config['remote'], config['local'], password))
 except BaseException as ex:
-    print("Unable to sync files form remote drive to disk. Error: %s" %(ex))
+    print("Unable to sync files from remote drive to disk. Error: %s" %(ex))
     sys.exit()
 
 print('Success!')
