@@ -1,10 +1,6 @@
 """
-__Info__
-This script is intended to sync audio/ media files between a remote disc "SpieDisc" 
-and a local server "spiemachine". The script ignores files that have already been migrated.
-
-__Dependencies__
-* sshpass: run brew install hudochenkov/sshpass/sshpass
+This script is intended to sync audio/ media files between a local location and a remote location.
+The script ignores files that have already been migrated.
 """
 
 import os
