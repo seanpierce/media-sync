@@ -1,0 +1,39 @@
+"""
+__Info__
+This script is intended to sync audio/ media files between a remote disc "SpieDisc" 
+and a local server "spiemachine". The script ignores files that have already been migrated.
+
+__Dependencies__
+* sshpass: run brew install hudochenkov/sshpass/sshpass
+"""
+
+import os
+from getpass import getpass
+
+# define local and remote locations
+config = {
+  "local": "/path/to/Music/",
+  "remote": "username@iporhostname:/path/to/Music/"
+}
+
+password = getpass()
+
+# sync files from disk to remote
+print('=== Syncing files from disk to remote drive ===')
+
+try:
+    os.system("sshpass -p %s rsync -a --ignore-existing --progress %s %s" %(config['local'], config['remote'], password))
+except BaseException as ex:
+    print("Unable to sync files form disk to remote drive. Error: %s" %(ex))
+    sys.exit() 
+
+# sync files from remote to disk
+print('=== Syncing files from remote drive to disk ===')
+
+try:
+    os.system("sshpass -p %s rsync -a --ignore-existing --progress %s %s" %(config['remote'], config['local'], password))
+except BaseException as ex:
+    print("Unable to sync files form remote drive to disk. Error: %s" %(ex))
+    sys.exit()
+
+print('Success!')
